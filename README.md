@@ -4,7 +4,7 @@
 ## **Content**
 
 This is the code repository for the research publication "Non-smooth Bayesian Optimization in Tuning Problems" by [Hengrui Luo](https://hrluo.github.io/), [James W. Demmel](http://people.eecs.berkeley.edu/~demmel/), [Younghyun Cho](https://github.com/younghyunc), [Xiaoye S. Li](https://crd.lbl.gov/departments/applied-mathematics/scalable-solvers/members/staff-members/xiaoye-li/) and [Yang Liu](https://crd.lbl.gov/departments/applied-mathematics/scalable-solvers/members/staff-members/yang-liu/). 
-The manuscript of this paper can be accessed at https://arxiv.org/abs/1910.04778. 
+The manuscript of this paper can be accessed at 
 
 Below we describe the files in the folder for your reference.
 
