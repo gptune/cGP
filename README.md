@@ -4,7 +4,7 @@
 ## **Content**
 
 This is the code repository for the research publication "Non-smooth Bayesian Optimization in Tuning Problems" by [Hengrui Luo](https://hrluo.github.io/), [James W. Demmel](http://people.eecs.berkeley.edu/~demmel/), [Younghyun Cho](https://github.com/younghyunc), [Xiaoye S. Li](https://crd.lbl.gov/departments/applied-mathematics/scalable-solvers/members/staff-members/xiaoye-li/) and [Yang Liu](https://crd.lbl.gov/departments/applied-mathematics/scalable-solvers/members/staff-members/yang-liu/). 
-The manuscript of this paper can be accessed at 
+The manuscript of this paper can be accessed at https://arxiv.org/abs/2109.07563
 
 Below we describe the files in the folder for your reference.
 
@@ -127,11 +127,13 @@ We provided MATLAB code for reproducible and experimental purposes under [LICENS
 Please cite our paper using following BibTeX item:
 
     @article{luo_nonsmooth_2021,
-        title = {Non-smooth Bayesian Optimization in Tuning Problems},
-        journal = {In Preparation},
-        author = {Luo, Hengrui and Demmel, James W. and Cho, Younghyun and Li, Xiaoye S. and Liu, Yang},
-        year = {2021+},
-        pages = {1--60}
-    } 
+      title={Non-smooth Bayesian Optimization in Tuning Problems}, 
+      author={Hengrui Luo and James W. Demmel and Younghyun Cho and Xiaoye S. Li and Yang Liu},
+      year={2021},
+      eprint={2109.07563},
+      archivePrefix={arXiv},
+      pages = {1--60},
+      primaryClass={cs.LG}
+    }
 
 Thank you again for the interest and please reach out if you have further questions.
