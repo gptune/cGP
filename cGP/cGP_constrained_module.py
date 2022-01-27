@@ -58,11 +58,14 @@ from scipy.optimize import SR1
 from scipy.optimize import minimize
 
 
-class cGP_constrained_module(object):
+class cGP_constrained(object):
     """
     This is the cGP_constrained callable interface, in addition to the command-line interface cGP_constrained.py 
 	"""
-    def __init__(self, **kwargs):
+    def __init__(self, DP, DO, **kwargs):
+        self.DP = DP 
+        self.DO = DO 
+
         if "N_PILOT" in kwargs:
             self.N_PILOT=kwargs['N_PILOT']
         else:
@@ -218,7 +221,7 @@ class cGP_constrained_module(object):
     #The linear constraints are defined using a LinearConstraint object.
     #The constraints here is x_0+2x_1<=1 and  2x_0+x_1=1   
     def get_linear_constraint(self):
-        linear_constraint = LinearConstraint([[1, 2], [2, 1]], [-np.inf, -np.inf], [np.inf, np.inf])
+        linear_constraint = LinearConstraint([[0]*self.DP], [-np.inf], [np.inf])
         return linear_constraint
 
     #The acquisition function
@@ -262,11 +265,6 @@ class cGP_constrained_module(object):
         print('random stamp for this run:',rdstr)
 
 
-
-
-
-
-
         acq_fun = self.get_acquisition()
         clf_XY = self.f_Classify()
         dgm_XY = self.f_Cluster(self.RND_SEED)
@@ -307,7 +305,6 @@ class cGP_constrained_module(object):
         X_sample = np.zeros((self.N_PILOT,bounds.shape[0]))
         for j in range(bounds.shape[0]):
                 X_sample[:,j] = np.random.uniform(bounds[j,0],bounds[j,1],size=(self.N_PILOT,1)).ravel()
-
 
         Y_sample = np.zeros((self.N_PILOT,1))
         Y_sample = np.zeros((self.N_PILOT,1))
