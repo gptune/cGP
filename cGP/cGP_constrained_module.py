@@ -51,7 +51,7 @@ from scipy.optimize import LinearConstraint
 
 from sklearn.gaussian_process import *
 from datetime import datetime
-import acquisition as acq
+import cGP.acquisition as acq
 
 from scipy import stats
 from scipy.optimize import SR1
@@ -626,4 +626,5 @@ class cGP_constrained(object):
         #     print(pkl_dict)  
         #     with open(OBJ_NAME, "wb+") as file_model: 
         #         pkl.dump(pkl_dict, file_model)
-
+        
+        return (X_sample, Y_sample)
