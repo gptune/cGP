@@ -62,62 +62,59 @@ class cGP_constrained(object):
     """
     This is the cGP_constrained callable interface, in addition to the command-line interface cGP_constrained.py 
 	"""
-    def __init__(self, DP, DO, **kwargs):
-        self.DP = DP 
-        self.DO = DO 
-
-        if "N_PILOT" in kwargs:
-            self.N_PILOT=kwargs['N_PILOT']
+    def __init__(self, **kwargs):
+        if "N_PILOT_CGP" in kwargs:
+            self.N_PILOT=kwargs['N_PILOT_CGP']
         else:
             self.N_PILOT=20
 
-        if "N_SEQUENTIAL" in kwargs:
-            self.N_SEQUENTIAL=kwargs['N_SEQUENTIAL']
+        if "N_SEQUENTIAL_CGP" in kwargs:
+            self.N_SEQUENTIAL=kwargs['N_SEQUENTIAL_CGP']
         else:
             self.N_SEQUENTIAL=20                
 
-        if "RND_SEED" in kwargs:
-            self.RND_SEED=kwargs['RND_SEED']
+        if "RND_SEED_CGP" in kwargs:
+            self.RND_SEED=kwargs['RND_SEED_CGP']
         else:
             self.RND_SEED=1  
 
-        if "EXAMPLE_NAME" in kwargs:
-            self.EXAMPLE_NAME=kwargs['EXAMPLE_NAME']
+        if "EXAMPLE_NAME_CGP" in kwargs:
+            self.EXAMPLE_NAME=kwargs['EXAMPLE_NAME_CGP']
         else:
-            self.EXAMPLE_NAME='default_name'
+            self.EXAMPLE_NAME='app_name'
 
 
 #Which method should we use for the Bayesian optimization scheme?
 #'FREQUENTIST' method means that the (hyper-)parameters are estimated by using some frequestist optimization like lbfgs.
 #'BAYESIAN' method means that the paramteres are estimated by putting a prior(Gamma)-posterior mechnism, the estimated value would be posterior mean.
-        if "METHOD" in kwargs:
-            self.METHOD=kwargs['METHOD']  
+        if "METHOD_CGP" in kwargs:
+            self.METHOD=kwargs['METHOD_CGP']  
         else:
             self.METHOD='FREQUENTIST'       
 
 #Following 3 parameters are only for HMC Bayesian sampling, you have to choose METHOD  = 'BAYESIAN' to use these parameters.
-        if "N_BURNIN" in kwargs:
-            self.N_BURNIN=kwargs['N_BURNIN']  
+        if "N_BURNIN_CGP" in kwargs:
+            self.N_BURNIN=kwargs['N_BURNIN_CGP']  
         else:
             self.N_BURNIN=500
-        if "N_MCMCSAMPLES" in kwargs:
-            self.N_MCMCSAMPLES=kwargs['N_MCMCSAMPLES']  
+        if "N_MCMCSAMPLES_CGP" in kwargs:
+            self.N_MCMCSAMPLES=kwargs['N_MCMCSAMPLES_CGP']  
         else:
             self.N_MCMCSAMPLES=500
-        if "N_INFERENCE" in kwargs:
-            self.N_INFERENCE=kwargs['N_INFERENCE']  
+        if "N_INFERENCE_CGP" in kwargs:
+            self.N_INFERENCE=kwargs['N_INFERENCE_CGP']  
         else:
             self.N_INFERENCE=500
 
 #Exploration rate is the probability (between 0 and 1) of following the next step produced by acquisition function.
-        if "EXPLORATION_RATE" in kwargs:
-            self.EXPLORATION_RATE=kwargs['EXPLORATION_RATE']  
+        if "EXPLORATION_RATE_CGP" in kwargs:
+            self.EXPLORATION_RATE=kwargs['EXPLORATION_RATE_CGP']  
         else:
             self.EXPLORATION_RATE=1.0    
 
 #Do you want a cluster GP? If NO_CLUSTER = True, a simple GP will be used.
-        if "NO_CLUSTER" in kwargs:
-            self.NO_CLUSTER=kwargs['NO_CLUSTER']  
+        if "NO_CLUSTER_CGP" in kwargs:
+            self.NO_CLUSTER=kwargs['NO_CLUSTER_CGP']  
         else:
             self.NO_CLUSTER=False
 
@@ -132,21 +129,21 @@ class cGP_constrained(object):
 #What is the maximal number of cluster by your guess? This option will be used only if NO_CLUSTER=False.
 
 #When deciding cluster components, how many neighbors shall we look into and get their votes? This option will be used only if NO_CLUSTER=False.
-        if "N_NEIGHBORS" in kwargs:
-            self.N_NEIGHBORS=kwargs['N_NEIGHBORS']  
+        if "N_NEIGHBORS_CGP" in kwargs:
+            self.N_NEIGHBORS=kwargs['N_NEIGHBORS_CGP']  
         else:
             self.N_NEIGHBORS=3
 
 
 #Cluster method: BGM or KMeans
-        if "CLUSTER_METHOD" in kwargs:
-            self.CLUSTER_METHOD=kwargs['CLUSTER_METHOD']  
+        if "CLUSTER_METHOD_CGP" in kwargs:
+            self.CLUSTER_METHOD=kwargs['CLUSTER_METHOD_CGP']  
         else:
             self.CLUSTER_METHOD='BGM'
 
 #What is the maximal number of cluster by your guess? This option will be used only if NO_CLUSTER=False.
-        if "N_COMPONENTS" in kwargs:
-            self.N_COMPONENTS=kwargs['N_COMPONENTS']  
+        if "N_COMPONENTS_CGP" in kwargs:
+            self.N_COMPONENTS=kwargs['N_COMPONENTS_CGP']  
         else:
             self.N_COMPONENTS=3
 
@@ -165,8 +162,8 @@ class cGP_constrained(object):
         self.SKLEARN_normalizer = True
 
 #acquisition function: EI or MSPE
-        if "ACQUISITION" in kwargs:
-            self.ACQUISITION=kwargs['ACQUISITION']  
+        if "ACQUISITION_CGP" in kwargs:
+            self.ACQUISITION=kwargs['ACQUISITION_CGP']  
         else:
             self.ACQUISITION='EI'
 
@@ -221,7 +218,7 @@ class cGP_constrained(object):
     #The linear constraints are defined using a LinearConstraint object.
     #The constraints here is x_0+2x_1<=1 and  2x_0+x_1=1   
     def get_linear_constraint(self):
-        linear_constraint = LinearConstraint([[0]*self.DP], [-np.inf], [np.inf])
+        linear_constraint = LinearConstraint([[1, 2], [2, 1]], [-np.inf, -np.inf], [np.inf, np.inf])
         return linear_constraint
 
     #The acquisition function
