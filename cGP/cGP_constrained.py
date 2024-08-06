@@ -28,9 +28,9 @@ print(sys.argv)
 import numpy as np
 print('numpy version: ', np.__version__)
 from numpy import int64	
-from numpy import int	
-from numpy import float	
-from numpy import bool
+# from numpy import int	
+# from numpy import float	
+# from numpy import bool
 RND_SEED = int(sys.argv[1])
 np.random.seed(RND_SEED)
 print('Seed=',RND_SEED)

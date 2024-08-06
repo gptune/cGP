@@ -30,9 +30,9 @@ print(sys.argv)
 #Print the numpy version and set the random seed
 import numpy as np
 from numpy import int64
-from numpy import int
-from numpy import float
-from numpy import bool
+# from numpy import int
+# from numpy import float
+# from numpy import bool
 print('numpy version: ', np.__version__)
 #RND_SEED=123
 RND_SEED = int(sys.argv[1])

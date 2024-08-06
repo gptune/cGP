@@ -22,9 +22,9 @@ print("Python version: ", sys.version)
 import numpy as np
 print('numpy version: ', np.__version__)
 from numpy import int64	
-from numpy import int	
-from numpy import float	
-from numpy import bool
+# from numpy import int	
+# from numpy import float	
+# from numpy import bool
 
 
 #Get a random string stamp for this specific run, used for the filename of image export.
